@@ -1,31 +1,27 @@
-/**
- * View the following documentation for theme configuration
- * - @see https://theme-plume.vuejs.press/config/intro/ Configuration guide
- * - @see https://theme-plume.vuejs.press/config/theme/ Theme configuration items
- *
- * Please note that modifications to this file will restart the vuepress service.
- * Some configuration updates do not require restarting the vuepress service. It is recommended to configure them in the `.vuepress/config.ts` file.
- *
- * In particular, do not duplicate the same configuration items in both configuration files, as the configuration items in the current file will be overwritten.
- */
-
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
+const base = process.env.NODE_ENV === "production" ? '/cmput350/' : '/';
+
 // noinspection JSUnusedGlobalSymbols
 export default defineUserConfig({
-  base: '/',
+  base,
   lang: 'en-US',
-  title: 'CMPUT350',
-  description: '',
-
+  title: 'CMPUT 350: Advanced Games Programming',
+  description: 'Notes and lab preparatory materials for CMPUT 350 (Advanced Games Programming) Fall 2026 at the University of Alberta',
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: `${base}static/favicon.png` }],
   ],
-
   bundler: viteBundler(),
   shouldPrefetch: false,
-
-  theme: plumeTheme(),
+  theme: plumeTheme({
+    autoFrontmatter: false,
+    readingTime: false,
+    lastUpdated: false,
+    contributors: false,
+    markdown: {
+      pdf: true
+    }
+  }),
 })

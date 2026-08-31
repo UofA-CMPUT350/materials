@@ -2,3 +2,9 @@ allowBuilds:
   esbuild: true
 shamefullyHoist: true
 shellEmulator: true
+allowedDeprecatedVersions:
+  whatwg-encoding: "*"
+peerDependencyRules:
+  allowAny:
+  - markdown-it
+  - katex

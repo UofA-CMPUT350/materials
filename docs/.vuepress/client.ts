@@ -1,9 +1,7 @@
 import { defineClientConfig } from 'vuepress/client'
 
-// import './theme/styles/custom.css' // import your custom styles / 导入自定义样式
+// @ts-ignore
+import './styles/index.css'
 
-export default defineClientConfig({
-  enhance({ app }) {
-    // do something...
-  },
-})
+// noinspection JSUnusedGlobalSymbols
+export default defineClientConfig({})
