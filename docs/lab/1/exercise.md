@@ -76,7 +76,7 @@ and test your Matrix in `main.cpp`. You should use dynamic memory allocation (`n
 Compile your program using the following command:
 
 ```shell:no-line-numbers
-g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++20 matrix.cpp main.cpp
+g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 matrix.cpp main.cpp
 ```
 
 Before submitting, make sure your implementation does not leak memory. Use valgrind to verify:
