@@ -23,7 +23,7 @@ Before you begin implementing the Matrix class, it is necessary to understand ho
 
 #### Constructor Initialization: Member Initializer Lists
 
-When defining a constructor for a type, you will will need to assign initial values to its member variables. 
+When defining a constructor for a type, you will will need to assign initial values to its member variables.
 While assigning values inside the constructor body is usually possible, there is a more direct and efficient way to do this in C++: using a member initializer list.
 
 Consider the following guiding questions:
@@ -68,7 +68,7 @@ You are provided with the following <a :href="$withBase('/static/labs/1.zip')" s
 - `matrix.cpp` — an incomplete implementation file that you will complete.
 - `main.cpp` — a sample driver to help you test your implementation.
 
-Your goal is to complete `matrix.cpp` by implementing all the functions declared in `matrix.h` (Do not modify `matrix.h`), 
+Your goal is to complete `matrix.cpp` by implementing all the functions declared in `matrix.h` (Do not modify `matrix.h`),
 and test your Matrix in `main.cpp`. You should use dynamic memory allocation (`new[]` and `delete[]`) to manage the 1D array backing the matrix.
 
 ### Compiling and Testing

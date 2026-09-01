@@ -1,10 +1,10 @@
 # Lab 1 — Getting started with C++
 
-### Prep
+## Prep
 
 - [Prep problems](prep)
 - Slides on migrating from C to C++: [Slides](slides)
 
-### Exercise
+## Exercise
 
 - [Exercise Problems](exercise)
