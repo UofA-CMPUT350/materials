@@ -4,8 +4,8 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 ### Course links
 
-- **Syllabus**: [Link](https://docs.google.com/document/d/1TEeZBA0z_k5nj0Pb2z_bmA2ufT9bmsiQf1cCHqLFX_8/edit?tab=t.utde99uvz8z0)
-- **Schedule**: [Link](https://docs.google.com/spreadsheets/d/1V2MzPiIpThbagwqnUZhuUrYWKFjAf6UdWFVJA8RHrjc/edit?gid=0#gid=0)
+- **Syllabus**: [Link](https://docs.google.com/document/d/1FwN3xJ1FX5HLwa2vCjxJOpFiAJmzfa0_aEmwa7OH_DY/edit?tab=t.utde99uvz8z0)
+- **Schedule**: [Link](https://docs.google.com/spreadsheets/d/1PfZq5b-vz4Pb47UW33Kd-c74BXnHLMsIzPola5UsBsc/edit?gid=0#gid=0)
 - **Canvas**: [Link](https://canvas.ualberta.ca/courses/36033)
 
 ### Locations and Times
