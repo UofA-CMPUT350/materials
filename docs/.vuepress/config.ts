@@ -2,7 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
-const base = process.env.NODE_ENV === "production" ? '/cmput350/' : '/';
+const base = process.env.NODE_ENV === "production" ? '/materials/' : '/';
 
 // noinspection JSUnusedGlobalSymbols
 export default defineUserConfig({
