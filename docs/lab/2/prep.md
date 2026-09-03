@@ -82,3 +82,10 @@ to create a fully functional game. **Further instructions are provided in the co
 - The game must be playable and responsive
 - All game mechanics must function as expected in a typical Flappy Bird implementation
 - Code must be well-structured and readable
+
+## Optional
+
+We provide a basic format configuration in `.clang-format`, if it is not your favourite code format, you can
+re-configure it using the [configurator](https://clang-format-configurator.site/) and re-format `main.cpp`.
+You can also configure VS Code to use this format through
+the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) extension.
