@@ -1,4 +1,4 @@
-# CMPUT 350 Lab 1 Prep Problems
+# Lab 1 Prep Problems
 
 > [!NOTE]
 > You don't need to submit this lab prep
@@ -74,10 +74,12 @@ Start by copying and pasting above code snippets into file `prep.c`. Compile you
 gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c99 prep.c
 ```
 
-and make sure that there are no errors or warnings. Additionally, use `valgrind` to ensure your implementation doesn’t leak memory.
+and make sure that there are no errors or warnings. Additionally, use `valgrind` to ensure your implementation doesn’t
+leak memory.
 
 ::: collapse
+
 - Answer
 
-    @[code c](snippet/prep.c)
-:::
+  @[code c](snippet/prep.c)
+  :::
