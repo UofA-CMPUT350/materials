@@ -82,4 +82,5 @@ leak memory.
 - Answer
 
   @[code c](snippet/prep.c)
-  :::
+
+:::

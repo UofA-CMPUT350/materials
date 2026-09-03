@@ -73,8 +73,8 @@ at: [cppreference.com: Member initializer list](https://en.cppreference.com/w/cp
 
 ### Problem
 
-You are provided with the following <a :href="$withBase('/static/labs/1.zip')" style="font-size: large">::griddy-icons:
-file-download::<strong>starter files</strong></a>:
+You are provided with the following <a :href="$withBase('/static/labs/1.zip')" style="font-size: large">
+::griddy-icons:file-download::<strong>starter files</strong></a>:
 
 - `matrix.h` — the header file declaring the Matrix struct and its associated methods.
 - `matrix.cpp` — an incomplete implementation file that you will complete.
@@ -97,3 +97,11 @@ Before submitting, make sure your implementation does not leak memory. Use valgr
 ```shell:no-line-numbers
 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./a.out
 ```
+
+::: collapse
+
+- Solutions
+
+  <RepoCard repo="UofA-CMPUT350/lab-1-exercise-soln"></RepoCard>
+
+:::
