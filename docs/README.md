@@ -10,15 +10,15 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 ### Locations and Times
 
-- Lecture: Mechanical Engineering Rm 4-3 (11:00 AM to 12:20 PM, Tuesdays and Thursdays)  
+- Lecture: Mechanical Engineering Rm 4-3 (11:00 AM to 12:20 PM, Tuesdays and Thursdays)
 - Labs: University Commons Rm 2-086/2-130 (2:00 PM to 4:50 PM, Tuesdays)
 
 ### Personnel
 
 - **Instructor**: Nathan Sturtevant
 - **Teaching Assistants**:
-  - Junwen Shen
-  - Spencer Killen
+    - Junwen Shen
+    - Spencer Killen
 
 ### Readings
 
@@ -30,11 +30,17 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 ### Lab 1 — Getting started with C++
 
-### Prep
+#### Prep
 
 - [Prep problems](lab/1/prep)
 - Slides on migrating from C to C++: [Slides](lab/1/slides)
 
-### Exercise
+#### Exercise
 
 - [Exercise Problems](lab/1/exercise)
+
+### Lab 2 — Getting started with SFML
+
+#### Prep
+
+- [Prep problems](lab/2/prep)

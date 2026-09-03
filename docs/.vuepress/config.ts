@@ -21,6 +21,7 @@ export default defineUserConfig({
     lastUpdated: false,
     contributors: false,
     markdown: {
+      annotation: true,
       collapse: true,
       pdf: true
     }

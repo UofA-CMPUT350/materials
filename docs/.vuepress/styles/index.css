@@ -2,4 +2,7 @@
     .main .vp-doc-title .page-title.padding {
         padding-bottom: 0;
     }
+    h3#tl-dr {
+        margin-top: 0;
+    }
 }

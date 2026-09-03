@@ -11,6 +11,9 @@ export default defineThemeConfig({
             items: [{
                 text: 'Lab 1',
                 link: '/lab/1/',
+            }, {
+                text: 'Lab 2',
+                link: '/lab/2/',
             }]
         }
     ],
