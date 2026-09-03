@@ -140,7 +140,7 @@ Individual keys on your keyboard are associated with both a “key code” (`sf:
 stored in the `scancode` member. These are not the same things in general:
 
 - A “key code” refers to the **logical** character located at a key, <u>depending on your OS-interpreted keyboard
-  layout</u>. This means that for example, if you have OS-level remappings (e.g., you told your OS your keyboard layout
+  layout</u>. This means that for example, if you have OS-level re-mappings (e.g., you told your OS your keyboard layout
   is AZERTY), then the key code accounts for this. If I pressed the “A” key in an AZERTY layout keyboard, I would get a
   key code of `sf::Keyboard::Key::A`.
   <ImageCard image="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/KB_France.svg/1280px-KB_France.svg.png"
@@ -183,7 +183,7 @@ while (const std::optional event = window.pollEvent()) {
 The `sf::Event::TextEntered` event is triggered when a character is actually outputted (e.g. as if you were typing into
 a textbox). Hitting `LShift` and then `A` produces two `KeyPressed` events, but one `TextEntered` event corresponding to
 capital `A` (and omitting the shift produces a lowercase `A`). The `TextEntered` event has only one member `unicode`,
-corresponding to the unicode of the produced character. For example:
+corresponding to the Unicode of the produced character. For example:
 
 ``` cpp
 if (const auto* textEntered = event->getIf<sf::Event::TextEntered>())
@@ -224,8 +224,8 @@ std::cout << "x = " << window_size.x << ", y = " << window_size.y << std::endl;
 
 `Vector2<T>` also comes with some methods you may find useful:
 
-- `length()`, which returns a `T` given by: $$\Vert\vec{v} \Vert = \sqrt{v_x^2 + v_y^2} $$
-- `lengthSquared()`, which also returns a `T` given by: $$\Vert \vec{v}\Vert^2 = v_x^2 + v_y^2 $$ This is useful when
+- `length()`, which returns a `T` given by: $\Vert\vec{v} \Vert = \sqrt{v_x^2 + v_y^2}$
+- `lengthSquared()`, which also returns a `T` given by: $\Vert \vec{v}\Vert^2 = v_x^2 + v_y^2$. This is useful when
   you want to do comparisons between lengths without incurring an expensive `std::sqrt`.
 - `dot(const Vector2<T>& other)`, which returns a `T` corresponding to the elementwise product and then summation:
   $$\mathrm{dot} (\vec{u}, \vec{v}) := \vec{u} \cdot \vec{v} = u_x \cdot v_x + u_y \cdot v_y$$
@@ -333,7 +333,7 @@ center via `circle.setOrigin(circle.getRadius(), circle.getRadius())`.
 
 #### Circle-circle collision detection
 
-Suppose you have two circles defined by a position and radius: $$C_1 = (\vec{p}_1, r_1) $$ $$C_2 = (\vec{p}_2, r_2) $$
+Suppose you have two circles defined by a position and radius: $C_1 = (\vec{p}_1, r_1)$, $C_2 = (\vec{p}_2, r_2)$.
 Two (filled) circles intersect (overlap) iff the distance between their centers is less than or equal to the sum of
 their radii:
 
@@ -377,7 +377,7 @@ If you’re comfortable with exceptions already, you can load directly in the co
 sf::SoundBuffer buffer("sound.wav");
 ```
 
-Once we’ve loaded your `sf::SoundBuffer`, we can construct an `sf::Sound`, and and manually play the sound at our
+Once we’ve loaded your `sf::SoundBuffer`, we can construct an `sf::Sound`, and manually play the sound at our
 command!
 
 ``` cpp
