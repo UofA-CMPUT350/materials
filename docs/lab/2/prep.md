@@ -74,7 +74,7 @@ to create a fully functional game. **Further instructions are provided in the co
    For the purposes of this prep, it is sufficient to consider the axis-aligned bounding box (rectangle) of the bird
    instead of the bird’s circle itself when detecting collisions.
 
-   Apply your knowledge of bounding boxes and intersection detection in SFML.
+   Apply your knowledge of bounding boxes and intersection detection in SFML ([Reference](sfml.md#axis-aligned-bounding-boxes-aabbs)).
 
 ## Requirements
 
