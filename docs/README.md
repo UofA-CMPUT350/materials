@@ -28,7 +28,11 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 ## Labs
 
-::: table title="Grading Breakdown" copy=false
+> [!WARNING]
+> If AI queries were used, you must turn in all AI queries used during the assignment 
+> and write a sentence for each query saying whether it was useful and why.
+
+::: table title="Grading Breakdown" align="center" copy=false
 
 | Part                                                                     | Percentage   |
 |--------------------------------------------------------------------------|--------------|
