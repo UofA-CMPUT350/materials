@@ -28,6 +28,16 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 ## Labs
 
+::: table title="Grading Breakdown" copy=false
+
+| Part                                                                     | Percentage   |
+|--------------------------------------------------------------------------|--------------|
+| Prep \(due before lab\)                                                  | $15\%$       |
+| Attendance                                                               | $15\%$       |
+| Lab exercise                                                             | $70\%$       |
+| Finished during the session without AI <br/>(must be physically present) | bonus $10\%$ |
+:::
+
 ### Lab 1 — Getting started with C++
 
 #### Prep

@@ -23,7 +23,8 @@ export default defineUserConfig({
     markdown: {
       annotation: true,
       collapse: true,
-      pdf: true
+      pdf: true,
+      table: true
     }
   }),
 })
