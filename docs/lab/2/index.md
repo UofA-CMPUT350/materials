@@ -3,3 +3,7 @@
 ## Prep
 
 - [Prep problems](prep)
+
+## Exercise
+
+- [Exercise Problems](exercise)
