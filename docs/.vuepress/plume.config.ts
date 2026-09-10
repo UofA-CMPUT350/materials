@@ -8,13 +8,12 @@ export default defineThemeConfig({
         {
             text: 'Labs',
             activeMatch: "/lab/",
-            items: [{
-                text: 'Lab 1',
-                link: '/lab/1/',
-            }, {
-                text: 'Lab 2',
-                link: '/lab/2/',
-            }]
+            items: [...Array(3)].map((_, i) => {
+                return {
+                    text: `Lab ${i + 1}`,
+                    link: `/lab/${i + 1}/`
+                }
+            })
         }
     ],
 })

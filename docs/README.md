@@ -42,7 +42,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 | Finished during the session without AI <br/>(must be physically present) | bonus $10\%$ |
 :::
 
-### Lab 1 — Getting started with C++
+### Lab 1 - Getting started with C++
 
 #### Prep
 
@@ -51,9 +51,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 #### Exercise
 
-- [Exercise Problems](lab/1/exercise)
+- [Exercise problems](lab/1/exercise)
 
-### Lab 2 — Getting started with SFML
+### Lab 2 - Getting started with SFML
 
 #### Prep
 
@@ -62,3 +62,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/2/exercise)
+
+### Lab 3 - Resource ownership, Move semantics, & Smart pointers
+
+#### Prep
+
+- [Prep problems](lab/3/prep)
