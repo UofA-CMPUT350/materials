@@ -1,4 +1,4 @@
-# Lab 4 — Cache layout and Timing
+# Lab 5 — Tween, Bezier and Rotation
 
 ## Prep
 
