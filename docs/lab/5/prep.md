@@ -38,7 +38,7 @@ circle location, and draw it to the screen.
 
 Implement nine different tween (easing) functions that are toggled between when you press the keys `1` to `9`. You
 can take these functions from lecture, design them yourself, or use [https://easings.net](https://easings.net). You
-can look at the code when you click on a particular function, but you should implement it youself in C++.
+can look at the code when you click on a particular function, but you should implement it yourself in C++.
 When a key is pressed, the code should replace the global `tween` function with a new function written as a lambda
 expression.
 
@@ -48,3 +48,10 @@ At the bottom of the window plot the tween function. This plot should have an x-
 defining the bounds. Then, the code should loop from 0 to 1 sampling the tween function and drawing it on the screen.
 Example output is shown below. The code should draw the current location of the animation on this curve with a small
 circle.
+
+<ImageCard
+  image="/static/img/tween.png"
+  title="Example Screenshot"
+  width="480"
+  :center="true"
+/>
