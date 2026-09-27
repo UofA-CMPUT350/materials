@@ -79,7 +79,6 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Prep problems](lab/4/prep)
 
-
 #### Exercise
 
 - [Exercise problems](lab/4/exercise)
@@ -87,3 +86,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Challenge
 
 - [Challenge problems](lab/4/challenge)
+
+### Lab 5 — Tween, Bezier and Rotation
+
+#### Prep
+
+- [Prep problems](lab/4/prep)
