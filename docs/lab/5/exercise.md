@@ -61,15 +61,15 @@ should use the following function to sample over different values of `t` and dra
 which effectively draws the full curve. All four control points should be drawn as circles as well after the curve is
 drawn.
 
-`Point2D GetPoint(const std::vector<sf::Vector2f> &pts, float t);`
+`Point2D getPoint(const std::vector<sf::Vector2f> &pts, float t);`
 
 ### Part 2
 
 Implement a function that gets the slope of a cubic Bézier curve for time `t`.
 
-`Point2D GetSlope(const std::vector<sf::Vector2f> &pts, float t);`
+`Point2D getSlope(const std::vector<sf::Vector2f> &pts, float t);`
 
-Then, in each frame, draw a small square along this curve repeatedly for t in [0, 1]. This square should be oriented to
+Then, in each frame, draw a small square along this curve repeatedly for t in $[0, 1]$. This square should be oriented to
 the curve at each time step. (Tip: start by moving a square, then work on adding rotation.)
 
 ### Part 3
