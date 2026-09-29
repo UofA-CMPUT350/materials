@@ -63,7 +63,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Exercise problems](lab/2/exercise)
 
-### Lab 3 - Resource ownership, Move semantics, & Smart pointers
+### Lab 3 - Resource ownership, Move semantics and Smart pointers
 
 #### Prep
 
@@ -73,7 +73,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Exercise problems](lab/3/exercise)
 
-### Lab 4 — Cache layout and Timing
+### Lab 4 - Cache layout and Timing
 
 #### Prep
 
@@ -92,3 +92,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Prep
 
 - [Prep problems](lab/5/prep)
+
+#### Exercise
+
+- [Exercise problems](lab/5/exercise)
