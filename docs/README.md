@@ -17,8 +17,8 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - **Instructor**: Nathan Sturtevant
 - **Teaching Assistants**:
-    - Junwen Shen
-    - Spencer Killen
+  - Junwen Shen
+  - Spencer Killen
 
 ### Readings
 
@@ -87,7 +87,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Challenge problems](lab/4/challenge)
 
-### Lab 5 — Tween, Bezier and Rotation
+### Lab 5 - Tween, Bezier and Rotation
 
 #### Prep
 
@@ -96,3 +96,13 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/5/exercise)
+
+### Lab 6 - Zoom & Pan, Views
+
+#### Prep
+
+- [Prep problems](lab/6/prep)
+
+#### Exercise
+
+- [Exercise problems](lab/6/exercise)

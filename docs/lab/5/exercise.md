@@ -3,7 +3,7 @@
 Author: Nathan Sturtevant
 
 > [!WARNING]
-> Due: September 29nd 2026, 11:30pm
+> Due: September 29th 2026, 11:30pm
 
 > [!IMPORTANT]
 > <RepoCard repo="UofA-CMPUT350/lab-5-exercise"></RepoCard>
