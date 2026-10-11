@@ -17,8 +17,8 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - **Instructor**: Nathan Sturtevant
 - **Teaching Assistants**:
-  - Junwen Shen
-  - Spencer Killen
+    - Junwen Shen
+    - Spencer Killen
 
 ### Readings
 
@@ -42,7 +42,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 | Finished during the session without AI <br/>(must be physically present) | bonus $10\%$ |
 :::
 
-### Lab 1 - Getting started with C++
+### Lab 1 - Getting Started with C++
 
 #### Prep
 
@@ -53,7 +53,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Exercise problems](lab/1/exercise)
 
-### Lab 2 - Getting started with SFML
+### Lab 2 - Getting Started with SFML
 
 #### Prep
 
@@ -63,7 +63,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Exercise problems](lab/2/exercise)
 
-### Lab 3 - Resource ownership, Move semantics and Smart pointers
+### Lab 3 - Resource Ownership, Move Semantics and Smart Pointers
 
 #### Prep
 
@@ -73,7 +73,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 
 - [Exercise problems](lab/3/exercise)
 
-### Lab 4 - Cache layout and Timing
+### Lab 4 - Cache Layout and Timing
 
 #### Prep
 
@@ -106,3 +106,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/6/exercise)
+
+### Lab 7 - Template Metaprogramming and ECS Entity Manager
+
+#### Prep
+
+- [Prep problems](lab/7/prep)
