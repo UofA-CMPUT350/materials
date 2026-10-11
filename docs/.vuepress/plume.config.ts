@@ -19,4 +19,5 @@ export default defineThemeConfig({
                 })
         }
     ],
+    outline: "deep"
 })
