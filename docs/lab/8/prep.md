@@ -26,8 +26,8 @@ hardware sprites.
 #### (Monetary) cost of memory
 
 Consider that the Atari 2600 had a pixel display with a resolution of $160 \times 192$. Supposing we wanted to
-support 128 colours per pixel ($\log_2(128) = 7$ bits), we would need $(160 \times 192) \times 7 = 215,040$ bits, or $26,880$
-bytes. In 1977, 16KB of RAM could cost $\$575$ USD[^note3], which makes the cost of the memory
+support 128 colours per pixel ($\log_2 (128) = 7$ bits), we would need $(160 \times 192) \times 7 = 215,040$ bits,
+or $26,880$ bytes. In 1977, 16KB of RAM could cost $\$575$ USD [+note3], which makes the cost of the memory
 for the screen *alone* $\approx 1.68 \times \$575 = \$966$ USD.
 
 Adjusted for inflation, this is approximately \$5,300 USD (\$7,200 CAD) in 2025.
@@ -43,7 +43,7 @@ Even supposing we could store an entire framebuffer at a time, a purely software
 sprites would mean having to erase each sprite from the last frame, and redrawing them in their new position
 on the current frame, before sending the framebuffer to the screen. Having the CPU handle this would mean
 eating up cycles not spent on actually running the game logic. Note that up until 2001 (with the IBM POWER4),
-computer processors were single-core(!)
+computer processors were single-core (!)
 
 With hardware sprites, classic gaming systems had dedicated hardware *separate from the CPU* which
 automatically composited (overlayed) sprites with CPU-configurable images and positions (and sometimes other
@@ -60,12 +60,12 @@ supported 64 on a screen with only 8 per scanline, and even the 2004 Nintendo DS
 a time.
 
 Supporting more sprites per scanline means increasing the time of checking the intersecting sprites per
-scanline, which at some point means not achieving the desired FPS. This is why sprites “flicker”[^note4]
+scanline, which at some point means not achieving the desired FPS. This is why sprites “flicker” [+note4]
 on systems like the NES when 9 or more sprites show up on a line — programmers would implement *sprite
-cycling* to randomize which 8 sprites showed up on a given frame, so that the player could still see all 9
-(but with flickering).
+cycling* to randomize which 8 sprites showed up on a given frame, so that the player could still see all 9 (but with
+flickering).
 
-Other limitations included limited colours[^note5], maximum texture sizes as well as limitations on the
+Other limitations included limited colours [+note5], maximum texture sizes as well as limitations on the
 types of transformations supported on the sprites. The NES and Sega Genesis both did not support zoom/scaling,
 and while all of the Atari 2600, NES, and Genesis supported various texturing mirroring, none of them
 supported arbitrary 2D rotations. The 1990 SNES supported arbitrary affine transforms *only on the
@@ -97,8 +97,8 @@ In the following two sections we cover both the geometry and the texturing side 
 
 A modern representation of sprites (indeed, almost any renderable object) has two main components:
 
-1.  its geometry (and any transformations thereof), and
-2.  its material (texture, colour, blending mode).
+1. its geometry (and any transformations thereof), and
+2. its material (texture, colour, blending mode).
 
 Here's a brief geometry primer.
 
@@ -111,7 +111,8 @@ texture UV-coordinates (discussed in section [Textures](#textures)), SFML define
 to be the top-left, but OpenGL uses the bottom-left.
 
 Finally, there is a matter of scale — SFML is designed such that the opposite screen corner to the origin is
-at point $(\text{screen width}, \text{screen height})$ (and similarly for textures, texture width/height, though this can be configured to
+at point $(\text{screen width}, \text{screen height})$ (and similarly for textures, texture width/height, though this
+can be configured to
 be in $[0, 1]^2$ using `sf::CoordinateType::Normalized`). If you were to touch OpenGL, in fact you would
 think of the screen in the range $[-1, 1]^2$.
 
@@ -136,13 +137,14 @@ beyond that (and perhaps more tangibly), there are differences in how one applie
 #### Transforms
 
 You may recall from linear algebra that in the Euclidean setting, all linear transforms $f$ on
-vectors have a corresponding matrix $A$ such that $f(\mathbf{v}) = A\mathbf{v}$. Recall furthermore that a
-transform $f$ is linear iff $f(\alpha \mathbf{v} + \mathbf{u}) = \alpha f(\mathbf{v}) + f(\mathbf{u})$ for all $\alpha \in \mathbb{R}$ and for all $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$.
+vectors have a corresponding matrix $A$ such that $f (\mathbf{v}) = A\mathbf{v}$. Recall furthermore that a
+transform $f$ is linear iff $f (\alpha \mathbf{v} + \mathbf{u}) = \alpha f (\mathbf{v}) + f (\mathbf{u})$ for
+all $\alpha \in \mathbb{R}$ and for all $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$.
 
 It would be convenient if we could extend our linear algebra tools to include one of the most common
 transforms in video games — translations, so that we can make use of tools like matrix inverses and
-composition. Clearly, translation is not linear because, for example, $(x + y) + 5 \not = (x+5) + (y+5)$. Thankfully, we have a
-useful fact — all *affine transforms* (composition of a linear transform and a translation) in
+composition. Clearly, translation is not linear because, for example, $(x + y) + 5 \not = (x+5) + (y+5)$. 
+Thankfully, we have a useful fact — all *affine transforms* (composition of a linear transform and a translation) in
 $d$-dimensional space can be represented as a linear transform on $(d+1)$-dimensional
 space, using *homogeneous coordinates*.
 
@@ -167,15 +169,19 @@ different direction).
 
 The (canonical) *homogeneous coordinates* of a point $\mathbf{p} = (p_1, \dots, p_d)$ in $\mathbb{R}^d$ is the
 $(d+1)$-tuple $(p_1, \dots, p_d, 1)$ (e.g., in 2D, $(p_1, p_2, 1)$). Furthermore, for any $\lambda \not = 0$, we
-define the equivalence $(p_1, p_2, p_w) \sim (\lambda p_1, \lambda p_2, \lambda p_w)$ — that is, any two homogeneous coordinates which are just scalar
+define the equivalence $(p_1, p_2, p_w) \sim (\lambda p_1, \lambda p_2, \lambda p_w)$ — that is, any two homogeneous
+coordinates which are just scalar
 multiples of each other represent the same underlying point. By convention, we normalize so that
-$p_w = 1$, i.e., $(p_1, p_2, p_w) \sim \left(\frac{p_1}{p_w}, \frac{p_2}{p_w}, 1\right)$. Without loss of generality, from now on we assume $p_w = 1$ for
+$p_w = 1$, i.e., $(p_1, p_2, p_w) \sim \left (\frac{p_1}{p_w}, \frac{p_2}{p_w}, 1\right)$. Without loss of generality,
+from now on we assume $p_w = 1$ for
 all points.
 
 ###### Vectors
 
 The *homogeneous coordinates* of a vector in $\mathbb{R}^d$ is the $(d+1)$-tuple $(v_1, \dots, v_d, 0)$.
-Note that by (informally) viewing this as $\lim_{v_w \to 0^+} (v_1, \dots, v_d, v_w) \sim \lim_{v_w \to 0^+} \left(\frac{v_1}{v_w}, \dots, \frac{v_d}{v_w}, 1\right)$, a vector is a “point at infinity” (thus truly just
+Note that by (informally) viewing this
+as $\lim_{v_w \to 0^+} (v_1, \dots, v_d, v_w) \sim \lim_{v_w \to 0^+} \left (\frac{v_1}{v_w}, \dots, \frac{v_d}{v_w}, 1\right)$,
+a vector is a “point at infinity” (thus truly just
 representing a direction, and not a point). Also, note that under this convention, adding a vector to a point
 yields a point, and subtracting two points yields a vector.
 
@@ -193,9 +199,9 @@ The *translation matrix* which translates a point by the vector $\mathbf{t} = (t
 
 $$
 T = \begin{bmatrix}
-    1 & 0 & t_x \\
-    0 & 1 & t_y \\
-    0 & 0 & 1
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1
 \end{bmatrix}
 $$
 
@@ -203,20 +209,20 @@ Which we can verify:
 
 $$
 \begin{align*}
-    T \mathbf{p} &= \begin{bmatrix}
-    1 & 0 & t_x \\
-    0 & 1 & t_y \\
-    0 & 0 & 1
+T \mathbf{p} &= \begin{bmatrix}
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1
 \end{bmatrix} \begin{bmatrix}
-    p_x \\ p_y \\ 1
+p_x \\ p_y \\ 1
 \end{bmatrix} = \begin{bmatrix}
-    p_x \cdot 1 + p_y \cdot 0 + 1 \cdot t_x \\
-    p_x \cdot 0 + p_y \cdot 1 + 1 \cdot t_y \\
-    p_x \cdot 0 + p_y \cdot 0 + 1 \cdot 1
+p_x \cdot 1 + p_y \cdot 0 + 1 \cdot t_x \\
+p_x \cdot 0 + p_y \cdot 1 + 1 \cdot t_y \\
+p_x \cdot 0 + p_y \cdot 0 + 1 \cdot 1
 \end{bmatrix} = \begin{bmatrix}
-    p_x + t_x \\
-    p_y + t_y \\
-    1
+p_x + t_x \\
+p_y + t_y \\
+1
 \end{bmatrix} = \mathbf{p} + \mathbf{t}
 \end{align*}
 $$
@@ -228,7 +234,7 @@ $s_y$ (i.e., the Hadamard/element-wise product $\mathbf{p} \odot \mathbf{s}$) is
 
 $$
 S = \begin{bmatrix}
-    s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1
+s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1
 \end{bmatrix}
 $$
 
@@ -236,20 +242,20 @@ which is again easily verified:
 
 $$
 \begin{align*}
-    S \mathbf{p} &= \begin{bmatrix}
-    s_x & 0 & 0 \\
-    0 & s_y & 0 \\
-    0 & 0 & 1
+S \mathbf{p} &= \begin{bmatrix}
+s_x & 0 & 0 \\
+0 & s_y & 0 \\
+0 & 0 & 1
 \end{bmatrix} \begin{bmatrix}
-    p_x \\ p_y \\ 1
+p_x \\ p_y \\ 1
 \end{bmatrix} = \begin{bmatrix}
-    s_x \cdot p_x + 0 + 0 \\
-    0 + s_y \cdot p_y + 0 \\
-    0 + 0 + 1
+s_x \cdot p_x + 0 + 0 \\
+0 + s_y \cdot p_y + 0 \\
+0 + 0 + 1
 \end{bmatrix} = \begin{bmatrix}
-    p_x \cdot  s_x \\
-    p_y \cdot s_y \\
-    1
+p_x \cdot  s_x \\
+p_y \cdot s_y \\
+1
 \end{bmatrix} = \mathbf{p} \odot \mathbf{s}
 \end{align*}
 $$
@@ -257,17 +263,17 @@ $$
 ###### Rotation
 
 Finally, the *rotation matrix* $R_\theta$, which rotates points and vectors an angle of $\theta$
-counterclockwise around the origin, is given by remapping the $x$-basis vector to $(\cos(\theta), \sin(\theta))$
-and the $y$-basis vector to $(-\sin(\theta), \cos(\theta))$ (verify for yourself that this is the case). Recall
+counterclockwise around the origin, is given by remapping the $x$-basis vector to $(\cos (\theta), \sin (\theta))$
+and the $y$-basis vector to $(-\sin (\theta), \cos (\theta))$ (verify for yourself that this is the case). Recall
 that the linear transform which remaps basis vectors just stacks the new basis vectors as column vectors
 side-by-side (you can easily verify this by multiplying with the standard basis vectors) — in this case,
 extending to homogeneous coordinates we get:
 
 $$
 R_\theta = \begin{bmatrix}
-    \cos(\theta) & -\sin(\theta) & 0 \\
-    \sin(\theta) & \cos(\theta) & 0 \\
-    0 & 0 & 1
+\cos (\theta) & -\sin (\theta) & 0 \\
+\sin (\theta) & \cos (\theta) & 0 \\
+0 & 0 & 1
 \end{bmatrix}
 $$
 
@@ -285,7 +291,8 @@ use vectors (whose last coordinate is 0) instead.
 
 **Note**. Affine transforms can be decomposed into a product of scale, rotations, translations, and *shears*
 (which we won't cover). Furthermore, in general an affine transformation matrix will always have a last row of
-$\begin{bmatrix} 0 & \dots & 0 & 1 \end{bmatrix}$. This means that in 2D you can represent typical (affine) transforms with just 6 floats (two
+$\begin{bmatrix} 0 & \dots & 0 & 1 \end{bmatrix}$. This means that in 2D you can represent typical (affine) transforms
+with just 6 floats (two
 for the new x-basis vector, two for the new y-basis vector, and two for a translation). Finally, transforms
 which have a final row which is different from the aforementioned are the more general *projective
 transformations*, which are out of scope for this course.
@@ -294,20 +301,24 @@ transformations*, which are out of scope for this course.
 
 #### Triangles
 
-A *convex combination* of $n$ points $\mathbf{p}_1, \dots, \mathbf{p}_n$ is the combination $\sum_{i = 1}^n \alpha_i \mathbf{p}_i$ such that
-each $\alpha_i \geq 0$ and $\sum_{i = 1}^n \alpha_i = 1$. Geometrically, a convex combination is a point which is “inbetween”
+A *convex combination* of $n$ points $\mathbf{p}_1, \dots, \mathbf{p}_n$ is the
+combination $\sum_{i = 1}^n \alpha_i \mathbf{p}_i$ such that
+each $\alpha_i \geq 0$ and $\sum_{i = 1}^n \alpha_i = 1$. Geometrically, a convex combination is a point which is
+“inbetween”
 the original points.
 
-A *triangle* is the set of all convex combinations between three specific, ordered points $\mathbf{p_1}, \mathbf{p_2}, \mathbf{p_3}$.
+A *triangle* is the set of all convex combinations between three specific, ordered
+points $\mathbf{p_1}, \mathbf{p_2}, \mathbf{p_3}$.
 Furthermore, in graphics a triangle has a “front side” and a “back side”. The front side is defined (by
-convention) to be the side from which the sequence $\mathbf{p_1} \to \mathbf{p_2} \to \mathbf{p_3}$ appears (“winds”) in counterclockwise
+convention) to be the side from which the sequence $\mathbf{p_1} \to \mathbf{p_2} \to \mathbf{p_3}$ appears (“winds”) in
+counterclockwise
 order.
 
 Triangles are the fundamental geometric building block for rasterizers. Triangle meshes (which are used to
 define the geometry of likely every character you have ever seen in a 3D video game) are so-called because
 they are just collections of triangles which approximate a true underlying surface. Why triangles and not
-quads? Triangles are the simplest possible polygon, and in particular, a non-degenerate triangle is
-**guaranteed to identify a plane** (i.e., its points are coplanar). This is not the case for a quad (e.g.,
+quads? Triangles are the simplest possible polygon, and in particular, a non-degenerate triangle is **guaranteed to
+identify a plane** (i.e., its points are coplanar). This is not the case for a quad (e.g.,
 take a square piece of paper and fold it along a diagonal).
 
 For this reason, to define a quad, we use two coplanar triangles (e.g., one corresponding to the top-left of
@@ -320,8 +331,8 @@ approximate arbitrarily detailed images. In computers, this is achieved with ras
 resolution of the bitmap defines the granularity of the approximation, and is proportional to the memory cost
 of storing the image.
 
-In graphics, there are many types of images we might want to map over the surface of a triangle mesh. Color
-(albedo), transparency masks, normal/bump maps, specular maps, and emission maps, are some of the images we
+In graphics, there are many types of images we might want to map over the surface of a triangle mesh. Color (albedo),
+transparency masks, normal/bump maps, specular maps, and emission maps, are some of the images we
 might want to display on surfaces to have fine-grained control of the appearance of meshes in a scene.
 
 In our case, the sprite only requires a simple quad mesh of two triangles, but the question remains of how to
@@ -330,14 +341,15 @@ uv coordinates)?
 
 The answer is: we associate each corner vertex $\mathbf{p}_i, i \in \{1, 2, 3\}$ of each triangle to a 2D UV-coordinate
 $(u_i, v_i)$ in texture space, and since each point $\mathbf{p}$ in a triangle is a convex combination
-of its positions $\mathbf{p} = \sum_{i = 1}^3 \alpha_i \mathbf{p}_i$, we define its corresponding texture coordinate to be the same convex
+of its positions $\mathbf{p} = \sum_{i = 1}^3 \alpha_i \mathbf{p}_i$, we define its corresponding texture coordinate to
+be the same convex
 combination using the corner UV-coordinates:
 
 $$
 (u, v) = \sum_{i = 1}^3 \alpha_i \cdot (u_i, v_i)
 $$
 
-The GPU rasterizer automatically handles[^note6] calculating these $\alpha_i$ in a
+The GPU rasterizer automatically handles [+note6] calculating these $\alpha_i$ in a
 perspective-correct way in 3D, so as a programmer your only job is making sure to set the correct texture
 coordinates for each vertex.
 
@@ -359,7 +371,8 @@ $(u, v) = (x + 0.5, y + 0.5)$ (i.e., the center of the pixel “square”).
 
   For example, at $(u, v) = (0.6, 1.3)$, this corresponds to position $(0.1, 0.8)$ relative to buffer indices, so
   the surrounding 4 pixels are at `img[y][x] = img[0][0], img[0][1], img[1][0], img[1][1]`. Then in the
-  x-direction $\alpha_x = \frac{0.1 - 0}{1 - 0} = 0.1$ and in the y-direction $\alpha_y = \frac{0.8 - 0}{1 - 0} = 0.8$. First collapsing the x-direction, we get
+  x-direction $\alpha_x = \frac{0.1 - 0}{1 - 0} = 0.1$ and in the y-direction $\alpha_y = \frac{0.8 - 0}{1 - 0} = 0.8$.
+  First collapsing the x-direction, we get
   `y0 = (1 - 0.1)*img[0][0] + 0.1*img[0][1]` and `y1 = (1 - 0.1)*img[1][0] + 0.1*img[1][1]` and then
   collapsing along y, the final result is `(1-0.8)*y0 + 0.8*y1`.
 
@@ -376,16 +389,16 @@ In this section, we assume all RGBA channels are in $[0, 1] \subset \mathbb{R}$.
 #### Alpha compositing
 
 Suppose we have a *source* image we want to composite on top of a *destination* image. If both images are
-fully opaque (have an alpha channel of 1), then trivially, the final image is $f(src, dst) = src$. Suppose instead
+fully opaque (have an alpha channel of 1), then trivially, the final image is $f (src, dst) = src$. Suppose instead
 that the source image is semi-transparent (it has alpha values $< 1$). Then, default alpha “over”
 compositor (`sf::BlendAlpha`) is implemented as follows:
 
 $$
-output_{RGB} = source_{RGB} \times source_{A} + destination_{RGB} * (1 - source_{A})
+output_{RGB} = source_{RGB} \times source_{A} + destination_{RGB} *  (1 - source_{A})
 $$
 
 $$
-output_{A} = source_{A}  + destination_{A} * (1 - source_{A})
+output_{A} = source_{A} + destination_{A} *  (1 - source_{A})
 $$
 
 Clearly, this operation is non-commutative (swapping the order of the arguments changes the output). There
@@ -397,36 +410,37 @@ output_{RGB} = source_{RGB} \times source_{A} + destination_{RGB}
 $$
 
 $$
-output_{A} = source_{A}  + destination_{A}
+output_{A} = source_{A} + destination_{A}
 $$
 
 ## Problems
 
-1.  1.  Suppose we use the rotation matrix for 2D space (represented again in homogeneous coordinates):
+1.
+    1. Suppose we use the rotation matrix for 2D space (represented again in homogeneous coordinates):
 
-        $$
-        R_\theta = \begin{bmatrix}
-                                    \cos(\theta) & -\sin(\theta) & 0 \\
-                                    \sin(\theta) & \cos(\theta) & 0 \\
-                                    0 & 0 & 1
-                                \end{bmatrix}
-        $$
+       $$
+       R_\theta = \begin{bmatrix}
+       \cos (\theta) & -\sin (\theta) & 0 \\
+       \sin (\theta) & \cos (\theta) & 0 \\
+       0 & 0 & 1
+       \end{bmatrix}
+       $$
 
-        with the x-axis pointing right and the y-axis pointing down. Does increasing $\theta$ perform
-        a clockwise, or counterclockwise rotation? What if the y-axis points up?
+       with the x-axis pointing right and the y-axis pointing down. Does increasing $\theta$ perform
+       a clockwise, or counterclockwise rotation? What if the y-axis points up?
 
-    2.  *Designing a basic transform*. Suppose we only wanted to support translations and scaling. In 2D, this
-        reduces the degrees of freedom to just four dimensions — two for the scale and two for the
-        translation. Here's one way to store such a transform:
+    2. *Designing a basic transform*. Suppose we only wanted to support translations and scaling. In 2D, this
+       reduces the degrees of freedom to just four dimensions — two for the scale and two for the
+       translation. Here's one way to store such a transform:
 
-        ```cpp
-        struct BasicTransform {
-            sf::Vector2f scale;
-            sf::Vector2f translation;
-        };
-        ```
+       ```cpp
+       struct BasicTransform {
+           sf::Vector2f scale;
+           sf::Vector2f translation;
+       };
+       ```
 
-        Implement the following methods in `basic_transform.h` (`const` is not indicated for you):
+       Implement the following methods in `basic_transform.h` (`const` is not indicated for you):
 
         - A constructor taking custom scale and translation. It should have default arguments corresponding to
           the identity transformation.
@@ -439,81 +453,82 @@ $$
 
           As an aside, in production code one might have different classes for `Vector` and `Point` (not just
           aliases — overloads do not distinguish between those) such that you could define `operator()()`
-          overloads on `BasicTransform` specialized for taking each.[^note1]
+          overloads on `BasicTransform` specialized for taking each. [+note1]
 
         - `bool operator==(const BasicTransform& other)`, which is just an exact comparison operator.
 
-        While the class of transformations spanned by either design is equivalent, think about whether it
-        makes more sense to apply the scale or the translation first.
+       While the class of transformations spanned by either design is equivalent, think about whether it
+       makes more sense to apply the scale or the translation first.
 
-2.  1.  Assume we are in SFML's coordinate system with the y-axis pointing down and the origin at the
-        top-left. Furthermore, the suppose the bottom-right of the screen is at point $(800, 600)$.
-        Suppose we want a rectangle of width and height exactly half the screen dimensions, centered at the
-        center of the screen.
+2.
+    1. Assume we are in SFML's coordinate system with the y-axis pointing down and the origin at the
+       top-left. Furthermore, the suppose the bottom-right of the screen is at point $(800, 600)$.
+       Suppose we want a rectangle of width and height exactly half the screen dimensions, centered at the
+       center of the screen.
 
-        List out, **in counterclockwise order**, 3 vertex positions for the triangle that is the top-left half
-        of the quad, and then 3 vertex positions for the triangle that is the bottom-right half of the quad.
+       List out, **in counterclockwise order**, 3 vertex positions for the triangle that is the top-left half
+       of the quad, and then 3 vertex positions for the triangle that is the bottom-right half of the quad.
 
-    2.  You should have duplicate vertex positions in (a). Using an index buffer (a buffer that stores indices
-        into another buffer), propose a way to represent the above quad that does not duplicate vertex
-        position information, and that uses less memory. Analyze, in terms of bytes, the memory usage of your
-        new scheme vs in (a). You may assume that indices and floats are both 4 bytes. Consider when either
-        approach wins (consider the number of times the same vertex is used by distinct triangles). Also
-        consider if we used doubles (8 bytes) instead of floats.
+    2. You should have duplicate vertex positions in (a). Using an index buffer (a buffer that stores indices
+       into another buffer), propose a way to represent the above quad that does not duplicate vertex
+       position information, and that uses less memory. Analyze, in terms of bytes, the memory usage of your
+       new scheme vs in (a). You may assume that indices and floats are both 4 bytes. Consider when either
+       approach wins (consider the number of times the same vertex is used by distinct triangles). Also
+       consider if we used doubles (8 bytes) instead of floats.
 
-    3.  Suppose we have assigned **normalized** UV coordinates to the 4 corners of the rectangle:
+    3. Suppose we have assigned **normalized** UV coordinates to the 4 corners of the rectangle:
         - top-left: $(0, 0)$
         - bottom-left: $(0, 1)$
         - bottom-right: $(1, 1)$
         - top-right: $(1, 0)$
 
-        What are the (normalized) UV coordinates corresponding to the screen point $(500, 301)$?
+       What are the (normalized) UV coordinates corresponding to the screen point $(500, 301)$?
 
-3.  *Sprite class*. Complete the TODOs in `sprite.h`, where the skeleton of a `Sprite` class is provided. You
-    will use a `sf::VertexArray` to represent the geometry and UV coordinates. It inherits from `sf::Drawable`
-    (and hence you can call `window.draw(mVertexArray, renderStates)`).
+3. *Sprite class*. Complete the TODOs in `sprite.h`, where the skeleton of a `Sprite` class is provided. You
+   will use a `sf::VertexArray` to represent the geometry and UV coordinates. It inherits from `sf::Drawable`
+   (and hence you can call `window.draw(mVertexArray, renderStates)`).
 
-    A vertex array in SFML is just a thin wrapper around `std::vector<sf::Vertex>`, together with a
-    `sf::PrimitiveType`. The latter determines how to interpret the list of vertices. For example,
-    `sf::PrimitiveType::Triangles` interprets every 3 consecutive vertices as a triangle to be drawn.
+   A vertex array in SFML is just a thin wrapper around `std::vector<sf::Vertex>`, together with a
+   `sf::PrimitiveType`. The latter determines how to interpret the list of vertices. For example,
+   `sf::PrimitiveType::Triangles` interprets every 3 consecutive vertices as a triangle to be drawn.
 
-    A `sf::Vertex` is just a struct of 3 things:
+   A `sf::Vertex` is just a struct of 3 things:
 
     - a position in space (2D),
-    - texture coordinates for this vertex (2D)[^note2], and
+    - texture coordinates for this vertex (2D) [+note2], and
     - a color, as an alternative to texture coordinates (we will not be using this).
 
-    It is possible to use `sf::PrimitiveType::TriangleStrip` in this case, but for compatibility with a future
-    lab, use `sf::PrimitiveType::Triangles` for this lab.
+   It is possible to use `sf::PrimitiveType::TriangleStrip` in this case, but for compatibility with a future
+   lab, use `sf::PrimitiveType::Triangles` for this lab.
 
-    You can reference a vertex array tutorial
-    [here](https://www.sfml-dev.org/tutorials/3.0/graphics/vertex-array).
+   You can reference a vertex array tutorial
+   [here](https://www.sfml-dev.org/tutorials/3.0/graphics/vertex-array).
 
-    The `Sprite` stores a raw pointer to its texture, which is assumed to outlive the sprite. It also stores a
-    `mMinPointTex` and `mMaxPointTex`, an AABB into the texture which represents the desired texture
-    subrectangle for the sprite to use. By default this is just the whole texture, unless the special
-    constructor with custom min/max point is called.
+   The `Sprite` stores a raw pointer to its texture, which is assumed to outlive the sprite. It also stores a
+   `mMinPointTex` and `mMaxPointTex`, an AABB into the texture which represents the desired texture
+   subrectangle for the sprite to use. By default this is just the whole texture, unless the special
+   constructor with custom min/max point is called.
 
-    Furthermore, an `mOrigin` represents the offset, relative to `mMinPointTex`, in texture coordinates, that
-    the position of the sprite (stored in the transform) should be at in the texture.
+   Furthermore, an `mOrigin` represents the offset, relative to `mMinPointTex`, in texture coordinates, that
+   the position of the sprite (stored in the transform) should be at in the texture.
 
-    Finally we make use of our `BasicTransform` to handle scaling and translations.
+   Finally we make use of our `BasicTransform` to handle scaling and translations.
 
-    We have provided a `mouse.cpp` for you which has testing code. If you've implemented things correctly, you
-    should see this:
+   We have provided a `mouse.cpp` for you which has testing code. If you've implemented things correctly, you
+   should see this:
 
-    <ImageCard
-      id="fig-thing"
-      image="/static/img/lab8_prep.png"
-      title="Figure 1"
-      width="256px"
-      :center="true"
-    />
+   <ImageCard
+   id="fig-thing"
+   image="/static/img/lab8_prep.png"
+   title="Figure 1"
+   width="256px"
+   :center="true"
+   />
 
-    Completed prep for Sprite.
+   Completed prep for Sprite.
 
-    where the sword tracks your cursor. **Your code should work the same regardless if you use the constructor
-    line with `texture` or `texture2`**!
+   where the sword tracks your cursor. **Your code should work the same regardless if you use the constructor
+   line with `texture` or `texture2`**!
 
 ## Barycentric Coordinates
 
@@ -536,9 +551,9 @@ $w = 1 - u - v \geq 0$. Thus:
 
 $$
 \begin{align*}
-    \mathbf{p} &= w\mathbf{a} + u\mathbf{b} + v\mathbf{c}\\
-    &= (1 - u - v)\mathbf{a} + u\mathbf{b} + v\mathbf{c}  \\
-    &= \mathbf{a} + u(\mathbf{b} - \mathbf{a}) + v(\mathbf{c} - \mathbf{a})
+\mathbf{p} &= w\mathbf{a} + u\mathbf{b} + v\mathbf{c}\\
+&= (1 - u - v)\mathbf{a} + u\mathbf{b} + v\mathbf{c} \\
+&= \mathbf{a} + u (\mathbf{b} - \mathbf{a}) + v (\mathbf{c} - \mathbf{a})
 \end{align*}
 $$
 
@@ -548,20 +563,21 @@ $(\mathbf{c} - \mathbf{a})$ is the vector from the reference corner to $\mathbf{
 the reference corner plus some percent distance towards corner $\mathbf{b}$ and plus some percent distance
 towards corner $\mathbf{c}$. $(u, v)$ are just those percentages.
 
-If we represent in world space $\mathbf{p} = \begin{bmatrix} p_1 \\ p_2 \end{bmatrix}$ and similarly for the corners, we can write this in matrix
+If we represent in world space $\mathbf{p} = \begin{bmatrix} p_1 \\ p_2 \end{bmatrix}$ and similarly for the corners, we
+can write this in matrix
 form:
 
 $$
 \begin{align*}
-    \underbrace{\begin{bmatrix}
-    b_1 - a_1 & c_1 - a_1 \\
-    b_2 - a_2 & c_2 - a_2
-    \end{bmatrix}}_{A} \begin{bmatrix}
-        u \\ v
-    \end{bmatrix}
-    &=\begin{bmatrix}
-        p_1 - a_1 \\ p_2 - a_2
-    \end{bmatrix}
+\underbrace{\begin{bmatrix}
+b_1 - a_1 & c_1 - a_1 \\
+b_2 - a_2 & c_2 - a_2
+\end{bmatrix}}_{A} \begin{bmatrix}
+u \\ v
+\end{bmatrix}
+&=\begin{bmatrix}
+p_1 - a_1 \\ p_2 - a_2
+\end{bmatrix}
 \end{align*}
 $$
 
@@ -570,28 +586,28 @@ $A$ is full rank and hence we can solve:
 
 $$
 \begin{align*}
-    \begin{bmatrix}
-        u \\ v
-    \end{bmatrix} &= A^{-1}\begin{bmatrix}
-        p_1 - a_1 \\ p_2 - a_2
-    \end{bmatrix} = A^{-1}(\mathbf{p} - \mathbf{a})
+\begin{bmatrix}
+u \\ v
+\end{bmatrix} &= A^{-1}\begin{bmatrix}
+p_1 - a_1 \\ p_2 - a_2
+\end{bmatrix} = A^{-1} (\mathbf{p} - \mathbf{a})
 \end{align*}
 $$
 
 In practice, in 2D this system is solved with Cramer's rule. This is left as an exercise to the reader.
 
-[^note1]: i.e., `Vector2D operator()(const Vector2D&)` and `Point2D operator()(const Point2D&)`
+[+note1]: i.e., `Vector2D operator()(const Vector2D&)` and `Point2D operator()(const Point2D&)`
 
-[^note2]: The `sf::RenderStates` passed into the draw call determines whether these are normalized or pixel coordinates.
-    The render states also determine the blend mode and the used texture. See documentation:
-    [here](https://www.sfml-dev.org/documentation/3.0.0/structsf_1_1RenderStates.html).
+[+note2]: The `sf::RenderStates` passed into the draw call determines whether these are normalized or pixel coordinates.
+The render states also determine the blend mode and the used texture. See documentation:
+[here](https://www.sfml-dev.org/documentation/3.0.0/structsf_1_1RenderStates.html).
 
-[^note3]: See [here](https://web.archive.org/web/20250117080257/https://jcmit.net/memoryprice.htm) for memory prices.
+[+note3]: See [here](https://web.archive.org/web/20250117080257/https://jcmit.net/memoryprice.htm) for memory prices.
 
-[^note4]: You can see some gameplay footage of this [here](https://www.youtube.com/watch?v=bDLj1Qcy9Eo).
+[+note4]: You can see some gameplay footage of this [here](https://www.youtube.com/watch?v=bDLj1Qcy9Eo).
 
-[^note5]: The 5 sprites supported by the Atari 2600 were all single-colour, which furthermore had limitations on size.
+[+note5]: The 5 sprites supported by the Atari 2600 were all single-colour, which furthermore had limitations on size.
 
-[^note6]: Those interested should look up “barycentric coordinates” and “perspective correct texture mapping”. A
-    thorough explanation of barycentric coordinates is given in appendix [Barycentric
-    Coordinates](#barycentric-coordinates).
+[+note6]: Those interested should look up “barycentric coordinates” and “perspective correct texture mapping”. A
+  thorough explanation of barycentric coordinates is given in appendix [Barycentric
+  Coordinates](#barycentric-coordinates).
