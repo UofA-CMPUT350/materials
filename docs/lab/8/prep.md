@@ -72,7 +72,7 @@ supported arbitrary 2D rotations. The 1990 SNES supported arbitrary affine trans
 background*. It wasn't until 3D support became commonplace in the 32-bit era that arbitrary affine transforms
 became widely supported on sprites.
 
-Nowadays, memory is cheap (in 2025, a 64 GB DDR4 kit can be obtained for under \$200 CAD), and we
+Nowadays, ~~memory is cheap (in 2025, a 64 GB DDR4 kit can be obtained for under \$200 CAD), and~~ we
 have powerful dedicated GPUs for parallel 3D processing and rendering. For this reason, we no longer need
 hardware sprites. We can easily store full-screen framebuffers in memory (A 1080p RGBA buffer with a byte per
 channel is only 8.3 MB), and we can effectively treat sprites as simple 3D geometry to send to our 3D hardware
