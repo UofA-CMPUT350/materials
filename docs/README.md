@@ -126,3 +126,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/8/exercise)
+
+### Lab 9 - 2D Cameras
+
+#### Prep
+
+- [Prep problems](lab/9/prep)
