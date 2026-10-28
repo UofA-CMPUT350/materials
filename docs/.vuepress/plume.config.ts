@@ -11,6 +11,7 @@ export default defineThemeConfig({
             activeMatch: "/lab/",
             items: readdirSync("docs/lab/", { withFileTypes: true })
                 .filter(entry => entry.isDirectory())
+                .sort((a, b) => Number(a.name) - Number(b.name))
                 .map((dir) => {
                     return {
                         text: `Lab ${dir.name}`,
