@@ -38,8 +38,9 @@ samples $x_0, x_1, \dots$, is given by:
 
 $$
 \begin{align*}
-                s_0 &=  x_0 \\
-                s_n &= \alpha x_n + (1-\alpha) s_{n-1} && \text{for } n > 0 \end{align*}
+s_0 &=  x_0 \\
+s_n &= \alpha x_n + (1-\alpha) s_{n-1} && \text{for } n > 0 
+\end{align*}
 $$
 
 (note some texts may swap the factors $\alpha$ and $(1 - \alpha)$). If $\alpha$ is small, the

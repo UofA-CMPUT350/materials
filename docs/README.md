@@ -142,3 +142,7 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Prep
 
 - [Prep problems](lab/10/prep)
+
+#### Exercise
+
+- [Exercise problems](lab/10/exercise)

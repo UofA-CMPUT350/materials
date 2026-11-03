@@ -2,6 +2,9 @@
 
 Author: Daniel Zhang
 
+> [!WARNING]
+> Due: November 3rd 2026, 2:00pm
+
 > [!IMPORTANT]
 > <RepoCard repo="UofA-CMPUT350/lab-10-prep"></RepoCard>
 > Click `Use this template` button (NOT `fork`) to create your repo based on it
@@ -199,7 +202,7 @@ vec4 aSwizzled = a.xyxy; // 1, 2, 1, 2
 vec4 b = aSwizzled.wwyx; // 2, 2, 2, 1
 ```
 
-There are built-in functions like `sin`, `mod`, etc. See [here](/static/resources/glsl_quickref.pdf). 
+There are built-in functions like `sin`, `mod`, etc. See <a :href="$withBase('/static/resources/glsl_quickref.pdf')">here</a>. 
 [Web references](https://registry.khronos.org/OpenGL-Refpages/gl4/) and [quick reference cards](https://www.khronos.org/files/opengl45-quick-reference-card.pdf) can also be found on the Khronos
 group's site, but are generally for newer versions of OpenGL (the last two are for OpenGL 4.5).
 
@@ -367,9 +370,8 @@ origin at the bottom-left and the point $(1, 1)$ at the top-right of the texture
     A solution to this problem will look like this:
 
     <ImageCard
-      id="fig-1a"
       image="/static/img/lab10_prep.png"
-      title="Problem 1a solution"
+      title="Problem 1 solution"
       width="1280px"
       :center="true"
     />
