@@ -146,3 +146,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/10/exercise)
+
+### Lab 11 - Sprite Batching
+
+#### Prep
+
+- [Prep problems](lab/11/prep)

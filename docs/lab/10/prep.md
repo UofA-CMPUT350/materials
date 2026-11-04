@@ -202,7 +202,7 @@ vec4 aSwizzled = a.xyxy; // 1, 2, 1, 2
 vec4 b = aSwizzled.wwyx; // 2, 2, 2, 1
 ```
 
-There are built-in functions like `sin`, `mod`, etc. See <a :href="$withBase('/static/resources/glsl_quickref.pdf')">here</a>. 
+There are built-in functions like `sin`, `mod`, etc. See <a :href="$withBase('/static/resources/glsl_quickref.pdf')" target="_blank">here</a>. 
 [Web references](https://registry.khronos.org/OpenGL-Refpages/gl4/) and [quick reference cards](https://www.khronos.org/files/opengl45-quick-reference-card.pdf) can also be found on the Khronos
 group's site, but are generally for newer versions of OpenGL (the last two are for OpenGL 4.5).
 
