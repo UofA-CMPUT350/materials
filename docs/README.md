@@ -156,3 +156,9 @@ Notes and lab preparatory materials for CMPUT 350 Fall 2026
 #### Exercise
 
 - [Exercise problems](lab/11/exercise)
+
+### Lab 12 - Spatial Acceleration Structures
+
+#### Prep
+
+- [Prep problems](lab/12/prep)

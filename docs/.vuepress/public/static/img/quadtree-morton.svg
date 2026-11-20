@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 242" role="img" aria-labelledby="title">
+<title id="title">Morton codes for quadtree cells</title>
+<g transform="translate(1 1)">
+<rect width="240" height="240" fill="#f7f9fc" stroke="#34445c" stroke-width="2"/>
+<path d="M120 0V240 M0 120H240 M60 120V240 M0 180H120" fill="none" stroke="#34445c" stroke-width="2"/>
+<g fill="#202b3c" font-family="monospace" font-size="18" text-anchor="middle" dominant-baseline="middle">
+<text x="60" y="60">00</text>
+<text x="180" y="60">01</text>
+<text x="30" y="150">1000</text>
+<text x="90" y="150">1001</text>
+<text x="30" y="210">1010</text>
+<text x="90" y="210">1011</text>
+<text x="180" y="180">11</text>
+</g>
+</g>
+</svg>
